@@ -66,8 +66,8 @@ class LinkedList:
 
 myList = LinkedList()
 
-myList.insert(1)
-myList.insert(2)
+myList.insert('a')
+myList.insert('b')
 myList.insert(3)
 myList.insert(4)
 myList.insert(5)
