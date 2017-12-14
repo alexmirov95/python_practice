@@ -67,6 +67,22 @@ class BST:
             self._postOrderHelper(node.right)
             print(node.value, " ", end="")
 
+    def levelOrderPrint (self):
+        self.checkEmpty()
+        print(self.root.value, " ", end="")
+        self._levelOrderHelper(self.root)
+        print("")
+
+    def _levelOrderHelper (self, node):
+        if node is not None:
+            if node.left is not None:
+                print (node.left.value, " ", end="")
+            if node.right is not None:
+                print (node.right.value, " ", end="")
+
+            self._levelOrderHelper(node.left)
+            self._levelOrderHelper(node.right)
+
     def checkEmpty(self):
         if self.root is None:
             print("Empty Tree!")
@@ -77,6 +93,16 @@ class BST:
 
 myTree = BST()
 
+#              5
+#           /     \
+#          3       8
+#        /  \     /  \
+#       1    2   7    10
+#               /       \
+#              6         12
+#                       /  \
+#                     11    14
+
 myTree.insert(5)
 myTree.insert(3)
 myTree.insert(8)
@@ -84,6 +110,10 @@ myTree.insert(10)
 myTree.insert(7)
 myTree.insert(1)
 myTree.insert(2)
+myTree.insert(6)
+myTree.insert(12)
+myTree.insert(11)
+myTree.insert(14)
 
 print("Preorder:")
 myTree.preOrderPrint()
@@ -93,6 +123,9 @@ myTree.inOrderPrint()
 
 print("Postorder:")
 myTree.postOrderPrint()
+
+print("Levelorder:")
+myTree.levelOrderPrint()
 
 
 
