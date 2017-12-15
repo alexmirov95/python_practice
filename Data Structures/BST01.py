@@ -83,6 +83,24 @@ class BST:
             self._levelOrderHelper(node.left)
             self._levelOrderHelper(node.right)
 
+    def height (self):
+        self.checkEmpty()
+        return self._heightHelper(self.root, 1)
+
+    def _heightHelper (self, node, count):
+        left = 0
+        right = 0
+        if node.left is not None:
+            left = self._heightHelper(node.left, count + 1)
+        if node.right is not None:
+            right = self._heightHelper(node.right, count + 1)
+        if left > count:
+            count = left
+        if right > count:
+            count = right
+        return count
+
+
     def checkEmpty(self):
         if self.root is None:
             print("Empty Tree!")
@@ -114,6 +132,9 @@ myTree.insert(6)
 myTree.insert(12)
 myTree.insert(11)
 myTree.insert(14)
+
+print("Height:")
+print(myTree.height())
 
 print("Preorder:")
 myTree.preOrderPrint()
