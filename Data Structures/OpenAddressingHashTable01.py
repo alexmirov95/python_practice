@@ -1,5 +1,5 @@
 '''
-Open Addressing Hash Table with Linear Probing
+Open Addressing Hash Table with Linear Probing and Lazy Deletions
 By: Alex Mirov
 Feb 2019
 '''
@@ -59,8 +59,9 @@ class HashTable:
 		'''
 		Inserts 'data' into the table using linear probing
 		'''
+		index = self.hashFunction(data, len(self.table))
 		for i in range(0, len(self.table)):
-			index = (self.hashFunction(data, len(self.table)) + i) % len(self.table)
+			index = (index + i) % len(self.table)
 
 			if self.table[index] is None:
 				self.table[index] = data
@@ -71,11 +72,35 @@ class HashTable:
 
 
 	def find (self, data):
-		pass
+		'''
+		Returns index into hash table with matching data value.
+		Returns None if data is not found.
+		'''
+		index = self.hashFunction(data, len(self.table))
+		for i in range(0, len(self.table)):
+			index = (index + i) % len(self.table)
+
+			if self.table[index] is data:
+				print("FOUND:", data, "at", index, "in", i + 1, "searches")
+				return index
+
+		return None
 
 
 	def delete(self, data):
-		pass
+		'''
+		Removes matching data from hash table. Implements Lazy Deletions -- meaning that the table will not 
+		rehash once elements have been removed.
+		Returns True if successfully deleted.
+		Returns False if data is not found in the table.
+		'''
+		# Find data in table
+		index = self.find(data)
+		if index is None: return False
+		
+		# Remove data
+		self.table[index] = None
+		return True
 
 
 	def printTable(self):
@@ -89,16 +114,20 @@ class HashTable:
 
 if __name__ == "__main__":
 
-	myHash = HashTable()
+	myHash = HashTable(hashFunction=quadratic)
 
 	myHash.insert(33)
 	myHash.insert(11)
 	myHash.insert(1)
 	myHash.insert(2)
-	myHash.insert(1)
 	myHash.insert(7)
 	myHash.insert(12)
 	myHash.insert(17)
 	myHash.insert(16)
+	myHash.insert(8)
+
+	myHash.printTable()
+
+	myHash.delete(12)
 
 	myHash.printTable()
