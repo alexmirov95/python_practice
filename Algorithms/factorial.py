@@ -1,9 +1,7 @@
 import time
 
 def factorial_memoized (n):
-    mem = []
-    for i in range(0,n+1):
-        mem.append(None)
+    mem = [None] * (n + 1)
     return helper_factorial(n, mem)
 
 def helper_factorial (n, mem):
