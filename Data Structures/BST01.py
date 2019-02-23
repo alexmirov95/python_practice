@@ -109,47 +109,44 @@ class BST:
 
 #########################################
 
-myTree = BST()
-
-#              5
-#           /     \
-#          3       8
-#        /  \     /  \
-#       1    2   7    10
-#               /       \
-#              6         12
-#                       /  \
-#                     11    14
-
-myTree.insert(5)
-myTree.insert(3)
-myTree.insert(8)
-myTree.insert(10)
-myTree.insert(7)
-myTree.insert(1)
-myTree.insert(2)
-myTree.insert(6)
-myTree.insert(12)
-myTree.insert(11)
-myTree.insert(14)
-
-print("Height:")
-print(myTree.height())
-
-print("Preorder:")
-myTree.preOrderPrint()
-
-print("Inorder:")
-myTree.inOrderPrint()
-
-print("Postorder:")
-myTree.postOrderPrint()
-
-print("Levelorder:")
-myTree.levelOrderPrint()
+if __name__ == "__main__":
 
 
+    myTree = BST()
 
+    #              5
+    #           /     \
+    #          3       8
+    #        /  \     /  \
+    #       1    2   7    10
+    #               /       \
+    #              6         12
+    #                       /  \
+    #                     11    14
 
+    myTree.insert(5)
+    myTree.insert(3)
+    myTree.insert(8)
+    myTree.insert(10)
+    myTree.insert(7)
+    myTree.insert(1)
+    myTree.insert(2)
+    myTree.insert(6)
+    myTree.insert(12)
+    myTree.insert(11)
+    myTree.insert(14)
 
+    print("Height:")
+    print(myTree.height())
 
+    print("Preorder:")
+    myTree.preOrderPrint()
+
+    print("Inorder:")
+    myTree.inOrderPrint()
+
+    print("Postorder:")
+    myTree.postOrderPrint()
+
+    print("Levelorder:")
+    myTree.levelOrderPrint()

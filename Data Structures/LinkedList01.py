@@ -64,16 +64,18 @@ class LinkedList:
 
 ##########################
 
-myList = LinkedList()
+if __name__ == "__main__":
 
-myList.insert('a')
-myList.insert('b')
-myList.insert(3)
-myList.insert(4)
-myList.insert(5)
+    myList = LinkedList()
 
-myList.printList()
+    myList.insert('a')
+    myList.insert('b')
+    myList.insert(3)
+    myList.insert(4)
+    myList.insert(5)
 
-myList.delete(0)
+    myList.printList()
 
-myList.printList()
+    myList.delete(0)
+
+    myList.printList()
