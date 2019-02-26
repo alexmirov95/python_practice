@@ -49,20 +49,15 @@ def _mergeLists (listA, listB):
 
 ##############################################################
 
+if __name__ == "__main__":
 
-myArr = [6, 2, 7, 13, 1, 10, 3, 8, 4, 5, 9, 11, 14, 12]
+    myArr = [6, 2, 7, 13, 1, 10, 3, 8, 4, 5, 9, 11, 14, 12]
 
-myArrSorted = mergeSort(myArr)
+    myArrSorted = mergeSort(myArr)
 
-print("Original:")
-print(myArr)
+    print("Original:")
+    print(myArr)
 
-print("Merge Sorted:")
-print(myArrSorted)
-
-
-
-
-
-
+    print("Merge Sorted:")
+    print(myArrSorted)
 
