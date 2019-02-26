@@ -99,12 +99,23 @@ class NAryTree:
             print("Empty tree!")
 
 
+    def inOrderPrint(self):
+        self._inOrderPrint(self.root)
+        print("")
 
+
+    def _inOrderPrint(self, node):
+        if node is not None:
+            for i in range(0, self.n - 1):
+                self._inOrderPrint(node.children[i])
+                print(node.data, " ", end="")
+
+            self._inOrderPrint(node.children[self.n - 1])
 
 
 if __name__ == "__main__":
     
-    myTree = NAryTree(4)
+    myTree = NAryTree(2)
 
     myTree.insert(5)
     myTree.insert(3)
@@ -119,5 +130,7 @@ if __name__ == "__main__":
     myTree.insert(6)
 
     myTree.printTree()
+
+    myTree.inOrderPrint()
 
 
