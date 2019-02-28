@@ -4,8 +4,6 @@ By: Alex Mirov
 Feb 2019
 '''
 
-import queue
-
 class NAryTree:
     '''
     Complete N-Ary Tree.
@@ -111,7 +109,10 @@ class NAryTree:
         Visit the root node first and then traverse the subtree rooted at its children one by one
         '''
         if node is not None:
+            # Print node
             print(node.data, " ", end="")
+            
+            # Traverse on children
             for i in range(0, self.n):
                 self._preOrderPrint(node.children[i])
 
@@ -126,40 +127,36 @@ class NAryTree:
         Traverse the subtree rooted at its children first and then visit the root node itself. 
         '''
         if node is not None:
+            # Traverse on children
             for i in range(0, self.n):
                 self._postOrderPrint(node.children[i])
+            
+            # Print node
             print(node.data, " ", end="")
 
 
     def levelOrderPrint(self):
-        q = queue.Queue()
-
         # Print Root
         if self.root is not None:
             print(self.root.data, " ", end="")
 
-        self._levelOrderPrint(self.root, q)
+        self._levelOrderPrint(self.root)
         print("")
 
 
-    def _levelOrderPrint(self, node, q):
+    def _levelOrderPrint(self, node):
         '''
         Same with a binary tree. BFS will traverse the tree in level order. 
         '''
         if node is not None:
-            # Enqueue all children's data
+            # Print the children's data first
             for i in range(0, self.n):
                 if node.children[i] is not None:
-                    q.put(node.children[i].data)
+                    print(node.children[i].data, " ", end="")
 
-            # Dequeue and print values
-            while  q.qsize() > 0:
-                el = q.get()
-                print(el, " ", end="")
-            
             # Traverse on children
             for i in range(0, self.n):
-                self._levelOrderPrint(node.children[i], q)
+                self._levelOrderPrint(node.children[i])
 
 
     def inOrderPrint(self):
@@ -169,16 +166,26 @@ class NAryTree:
 
     def _inOrderPrint(self, node):
         if node is not None:
-            for i in range(0, self.n - 1):
-                self._inOrderPrint(node.children[i])
-                print(node.data, " ", end="")
 
-            self._inOrderPrint(node.children[self.n - 1])
+            # Traverse on nodes less than current node's value
+            for i in range(0, self.n):
+                if node.children[i] is not None:
+                    if node.children[i].data < node.data:
+                        self._inOrderPrint(node.children[i])
+
+            # Print Current Node
+            print(node.data, " ", end="")
+
+            # Traverse on nodes greater than current node's value
+            for i in range(0, self.n):
+                if node.children[i] is not None:
+                    if node.children[i].data >= node.data:
+                        self._inOrderPrint(node.children[i])
 
 
 if __name__ == "__main__":
     
-    myTree = NAryTree(3)
+    myTree = NAryTree(2)
 
     myTree.insert(5)
     myTree.insert(3)
@@ -197,5 +204,6 @@ if __name__ == "__main__":
     myTree.preOrderPrint()
     myTree.postOrderPrint()
     myTree.levelOrderPrint()
+    myTree.inOrderPrint()
 
 
