@@ -30,7 +30,7 @@ class NAryTree:
         def insertChild(self, data):
             '''
             Inserts child node at appropriate place in children array.
-            Every node must be full before creating another level.
+            Every node must be full (number of children == n) before creating another level.
             '''
             # Iterate through children to find propper place to insert new node
             for i in range(0, self.n):
