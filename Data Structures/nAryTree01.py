@@ -4,6 +4,8 @@ By: Alex Mirov
 Feb 2019
 '''
 
+import queue
+
 class NAryTree:
     '''
     Complete N-Ary Tree.
@@ -99,6 +101,67 @@ class NAryTree:
             print("Empty tree!")
 
 
+    def preOrderPrint(self):
+        self._preOrderPrint(self.root)
+        print("")
+
+
+    def _preOrderPrint(self, node):
+        '''
+        Visit the root node first and then traverse the subtree rooted at its children one by one
+        '''
+        if node is not None:
+            print(node.data, " ", end="")
+            for i in range(0, self.n):
+                self._preOrderPrint(node.children[i])
+
+
+    def postOrderPrint(self):
+        self._postOrderPrint(self.root)
+        print("")
+
+
+    def _postOrderPrint(self, node):
+        '''
+        Traverse the subtree rooted at its children first and then visit the root node itself. 
+        '''
+        if node is not None:
+            for i in range(0, self.n):
+                self._postOrderPrint(node.children[i])
+            print(node.data, " ", end="")
+
+
+    def levelOrderPrint(self):
+        q = queue.Queue()
+
+        # Print Root
+        if self.root is not None:
+            print(self.root.data, " ", end="")
+
+        self._levelOrderPrint(self.root, q)
+        print("")
+
+
+    def _levelOrderPrint(self, node, q):
+        '''
+        Same with a binary tree. BFS will traverse the tree in level order. 
+        '''
+        if node is not None:
+            # Enqueue all children's data
+            for i in range(0, self.n):
+                if node.children[i] is not None:
+                    q.put(node.children[i].data)
+
+            # Dequeue and print values
+            while  q.qsize() > 0:
+                el = q.get()
+                print(el, " ", end="")
+            
+            # Traverse on children
+            for i in range(0, self.n):
+                self._levelOrderPrint(node.children[i], q)
+
+
     def inOrderPrint(self):
         self._inOrderPrint(self.root)
         print("")
@@ -115,7 +178,7 @@ class NAryTree:
 
 if __name__ == "__main__":
     
-    myTree = NAryTree(2)
+    myTree = NAryTree(3)
 
     myTree.insert(5)
     myTree.insert(3)
@@ -131,6 +194,8 @@ if __name__ == "__main__":
 
     myTree.printTree()
 
-    myTree.inOrderPrint()
+    myTree.preOrderPrint()
+    myTree.postOrderPrint()
+    myTree.levelOrderPrint()
 
 
