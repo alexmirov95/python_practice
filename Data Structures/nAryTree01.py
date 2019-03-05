@@ -157,33 +157,7 @@ class NAryTree:
             # Traverse on children
             for i in range(0, self.n):
                 self._levelOrderPrint(node.children[i])
-
-
-    def inOrderPrint(self):
-        self._inOrderPrint(self.root, float("-inf"))
-        print("")
-
-
-    def _inOrderPrint(self, node, curMax):
-        if node is not None:
-
-            # Traverse on nodes less than current node's value
-            for i in range(0, self.n):
-                if node.children[i] is not None and \
-                        node.children[i].data < node.data:
-                    if node.children[i].data < curMax:
-                        self._inOrderPrint(node.children[i], node.data)
-                    # else:
-
-
-            # Print Current Node
-            print(node.data, " ", end="")
-
-            # Traverse on nodes greater than current node's value
-            for i in range(0, self.n):
-                if node.children[i] is not None and node.children[i].data >= node.data:
-
-                    self._inOrderPrint(node.children[i], curMax)
+                
 
 
 if __name__ == "__main__":
