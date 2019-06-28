@@ -48,6 +48,25 @@ class BST:
         r = self._search(value, node.right)
         if r is not None: return r
 
+    def delete (self, value):
+        node = self.search(value)
+        if node is None: return False
+        # Case 1: Node is leaf --> remove node
+        
+        # Case 2: Node has 1 child --> child node replaces deleted node
+
+        # Case 3: Node has 2 children --> Find inorder successor of the deleted node. Move the in order
+        #                                 successor to the deleted node's spot. In order predecessor can
+        #                                 also be used.
+
+
+    def _swapNodes (self, nodeA, nodeB):
+        if nodeA is None or nodeB is None: return False
+        temp = nodeA.value
+        nodeA.value = nodeB.value
+        nodeB.value = temp
+        return True
+
     def preOrderPrint (self):
         self.checkEmpty()
         self._preOrderHelper(self.root)
@@ -166,4 +185,4 @@ if __name__ == "__main__":
     myTree.levelOrderPrint()
 
 
-    print("search = ", myTree.search(10).value)
+    print("search = ", myTree.search(6).value)
