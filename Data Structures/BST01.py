@@ -34,6 +34,20 @@ class BST:
                     print("No redundant values allowed!")
                     sys.exit(1)
 
+    def search (self, value): 
+        return self._search(value, self.root)
+
+    def _search (self, value, node):
+        if node is None:
+            return None
+        elif node.value == value:
+            return node
+
+        l = self._search(value, node.left)
+        if l is not None: return l
+        r = self._search(value, node.right)
+        if r is not None: return r
+
     def preOrderPrint (self):
         self.checkEmpty()
         self._preOrderHelper(self.root)
@@ -150,3 +164,6 @@ if __name__ == "__main__":
 
     print("Levelorder:")
     myTree.levelOrderPrint()
+
+
+    print("search = ", myTree.search(10).value)
